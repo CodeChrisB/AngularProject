@@ -1,0 +1,97 @@
+/* Robert Freiseisen  30.9.2020
+   HTBLA Leonding     4BHIF */
+
+import {Component, OnInit} from '@angular/core';
+import {Person} from 'src/app/app.person';
+import {PersonService} from './app.person.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  public title: string = 'PersonManager';
+  public searchString: string = '';
+  public actCountry: string = '';
+  public imgUrl: string = '';
+  public ncshow: boolean = true;
+  public nsshow: boolean = true;
+  public nlshow: boolean = true;
+
+
+  public nc(){
+    this.ncshow=!this.ncshow
+  }
+  private findCurrentId() : number{
+    var poped = this.personSevice.persons.pop();
+    this.personSevice.persons.push(poped);
+    if(poped == null)
+    {
+      return 1;
+    }
+    return poped.id + 1;
+  }
+  public personSevice: PersonService;
+
+  constructor(ps: PersonService) {
+    this.personSevice = ps;
+  }
+
+  ngOnInit(): void {
+    this.personSevice.findAll();
+  }
+
+  // Sort persons by country
+  sortByCountry() {
+    console.log("bin in country");
+
+    this.personSevice.persons.sort((a, b) => a.country.localeCompare(b.country));
+  }
+
+  // Add Person
+  onAdd(firstname: string, lastname:string ){
+    alert('add')
+    this.personSevice.addPerson(new Person(this.findCurrentId(), 'M', firstname, lastname, 'Austria'));
+  }
+
+  // Sort persons by LastName
+  sortByLastName() {
+    console.log("bin in LastName");
+
+    this.personSevice.persons.sort((a, b) => a.lastname.localeCompare(b.lastname));
+  }
+
+  // Sort persons by FirstName
+  sortByFirstName() {
+    console.log("bin in FirstName");
+
+    this.personSevice.persons.sort((a, b) => a.firstname.localeCompare(b.lastname));
+  }
+
+  public matches(person): boolean {
+    return person.country.toUpperCase().indexOf(this.actCountry.toLocaleUpperCase()) != -1;
+  }
+
+  public matchesSearch(person): boolean {
+    return person.lastname.toUpperCase().indexOf(this.searchString.toUpperCase()) != -1;
+  }
+
+  public getColor(person): string {
+
+    if (this.matches(person) == false) {
+      return 'white';
+    }
+
+    return 'gray';
+
+  }
+
+
+
+  onDelete(id: number) {
+    this.personSevice.delete(id);
+  }
+
+
+}
