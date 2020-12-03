@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Person} from 'src/app/app.person';
 
 @Component({
-  selector: 'app-person-ditail',
-  templateUrl: './person-ditail.component.html',
-  styleUrls: ['./person-ditail.component.css']
+  selector: 'todo-list',
+  templateUrl: './todo-component.html',
+  styleUrls: ['./todo-component.css']
 })
-export class PersonDitailComponent implements OnInit {
+export class TodoCompnent implements OnInit {
 
   @Input() person: Person;
   @Output() deleteme: EventEmitter<Person> = new EventEmitter<Person>();

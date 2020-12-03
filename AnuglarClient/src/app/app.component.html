@@ -1,3 +1,7 @@
+<topbar></topbar>
+<list-component></list-component>
+
+
 <button  (click)="ncshow=!ncshow" class="tab">Show Add Area</button><br>
 
 
@@ -44,8 +48,12 @@
         (mouseover)="actCountry = person.country"
         [style.background-color]="getColor(person)">
 
-      <app-person-ditail [person]=person (click)="onDelete(person.id)"></app-person-ditail>
+      <todo-list [person]=person (click)="onDelete(person.id)"></todo-list>
     </div>
   </div>
 </div>
+
+
+
+
 
