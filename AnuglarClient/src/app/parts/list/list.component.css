@@ -1,8 +1,9 @@
 table{
-  width: 80vw;
+  max-width: 60vh;
   max-height: 80vh;
   position: center;
   overflow: auto;
+  background-color: bisque;
 }
 
 button{
@@ -12,4 +13,10 @@ button{
 #cButton{
   color: lightgray;
   width: fit-content;
+}
+
+p#prio{
+  border-radius: 4px;
+  width: 70px;
+  text-align: center;
 }
