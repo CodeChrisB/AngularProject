@@ -1,0 +1,22 @@
+    <div id="remove">
+        <h1>Neues Todo hinzufügen</h1>
+        <input [(ngModel)]="todo.person" type="text" class="form-control" id="name"
+        required name="name" placeholder="Person">
+    </div>
+    <div>
+        <select name="month" matNativeControl required [(ngModel)]="todo.priority" value="Wichtigkeit" [style.backgroundColor]="getColor()">
+            <option value=1 style="background-color: red;">Major</option>
+            <option value=2 style="background-color: #FF8800;">Medium</option>
+            <option value=3 style="background-color: green;">Minor</option>
+            <option value=9 style="background-color: grey;">None</option>
+        </select>
+    </div>
+    <div>
+        <input [(ngModel)]="todo.length" type="text" class="form-control" id="name"
+        required name="name" placeholder="Dauer">
+    </div>
+    <div class="big">
+        <input [(ngModel)]="todo.descripton" type="text" class="form-control" id="name"
+        required name="name" placeholder="Desc">
+        <button (click)="addTodo()">Hinzufügen</button>
+    </div>

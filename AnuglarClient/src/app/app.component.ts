@@ -3,7 +3,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import {Person} from 'src/app/app.person';
-import {PersonService} from './app.person.service';
+import {TodoService} from './app.todo.service';
 
 @Component({
   selector: 'app-root',
@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
     }
     return poped.id + 1;
   }
-  public personSevice: PersonService;
+  public personSevice: TodoService;
 
-  constructor(ps: PersonService) {
+  constructor(ps: TodoService) {
     this.personSevice = ps;
   }
 
@@ -51,7 +51,6 @@ export class AppComponent implements OnInit {
 
   // Add Person
   onAdd(firstname: string, lastname:string ){
-    alert('add')
     this.personSevice.addPerson(new Person(this.findCurrentId(), 'M', firstname, lastname, 'Austria'));
   }
 

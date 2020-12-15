@@ -27,11 +27,7 @@
           </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="Urgency">
-        <mat-header-cell *matHeaderCellDef>Urgency</mat-header-cell>
-        <mat-cell class="duration-cell"
-                  *matCellDef="let todo">{{todo.urgency}}</mat-cell>
-    </ng-container>
+      
 
     <ng-container matColumnDef="Length">
       <mat-header-cell *matHeaderCellDef>Length</mat-header-cell>
@@ -59,7 +55,7 @@
         <mat-header-cell  *matHeaderCellDef > Actions </mat-header-cell>
         <mat-cell *matCellDef="let row" >
              <button id="cButton" mat-button><mat-icon>create</mat-icon></button>
-             <button id="cButton" mat-button><mat-icon>delete</mat-icon></button>
+             <button id="cButton" (click)="remove(row.id)" mat-button><mat-icon>delete</mat-icon></button>
         </mat-cell>
       </ng-container>
 
@@ -70,7 +66,7 @@
 
       
     </mat-table>
-    <button id="addButton" (click)="addTodo()">
+    <button id="addButton" routerLink="new" (click)="addTodo()">
       <mat-icon>
           add
       </mat-icon>

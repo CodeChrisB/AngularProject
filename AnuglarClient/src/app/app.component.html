@@ -1,58 +1,56 @@
 <topbar></topbar>
 <list-component></list-component>
 
-
-<button  (click)="ncshow=!ncshow" class="tab">Show Add Area</button><br>
-
-
-<div class="half" *ngIf="ncshow">
-  <h1>Enter:</h1>
-  <h1>New Customer</h1>
- 
-  <form >
-    <label #firstname for="fname">First Name</label>
-    <input #lastname type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="country">Country</label>
-    <select ng-Options id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select>
+<div hidden>
+  <button  (click)="ncshow=!ncshow" class="tab">Show Add Area</button><br>
+  <div class="half" *ngIf="ncshow">
+    <h1>Enter:</h1>
+    <h1>New Customer</h1>
   
-    <input (click)="onAdd(firstname, lastname)" type="submit" value="Submit">
-  </form>
-</div>
+    <form >
+      <label #firstname for="fname">First Name</label>
+      <input #lastname type="text" id="fname" name="firstname" placeholder="Your name..">
 
-<button (click)="nsshow=!nsshow" class="tab">Show Search Area</button>
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
 
-<div *ngIf="nsshow" class="half">
-  <hr/>
-  <h1>Search lastname:</h1>
-  <input type="text" [(ngModel)]="searchString"/>
-  <hr/>
-  <h1>Sort:</h1>
-  <button (click)="sortByFirstName()">firstname</button>
-  <button (click)="sortByLastName()">lastname</button>
-  <button (click)="sortByCountry()">country</button>
-  <hr>
-</div>
+      <label for="country">Country</label>
+      <select ng-Options id="country" name="country">
+        <option value="australia">Australia</option>
+        <option value="canada">Canada</option>
+        <option value="usa">USA</option>
+      </select>
+    
+      <input (click)="onAdd(firstname, lastname)" type="submit" value="Submit">
+    </form>
+  </div>
 
-<button (click)="nlshow=!nlshow" class="tab">Show Search Area</button>
-<div *ngIf="nlshow">
-  <div *ngFor="let person of personSevice.persons, let i=index">
-    <div *ngIf="matchesSearch(person)"
-        (mouseover)="actCountry = person.country"
-        [style.background-color]="getColor(person)">
+  <button (click)="nsshow=!nsshow" class="tab">Show Search Area</button>
 
-      <todo-list [person]=person (click)="onDelete(person.id)"></todo-list>
+  <div *ngIf="nsshow" class="half">
+    <hr/>
+    <h1>Search lastname:</h1>
+    <input type="text" [(ngModel)]="searchString"/>
+    <hr/>
+    <h1>Sort:</h1>
+    <button (click)="sortByFirstName()">firstname</button>
+    <button (click)="sortByLastName()">lastname</button>
+    <button (click)="sortByCountry()">country</button>
+    <hr>
+  </div>
+
+  <button (click)="nlshow=!nlshow" class="tab">Show Search Area</button>
+  <div *ngIf="nlshow">
+    <div *ngFor="let person of personSevice.persons, let i=index">
+      <div *ngIf="matchesSearch(person)"
+          (mouseover)="actCountry = person.country"
+          [style.background-color]="getColor(person)">
+
+        <todo-list [person]=person (click)="onDelete(person.id)"></todo-list>
+      </div>
     </div>
   </div>
 </div>
-
 
 
 
