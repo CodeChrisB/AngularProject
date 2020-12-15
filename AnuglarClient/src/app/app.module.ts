@@ -45,7 +45,7 @@ import { AddtodoComponent } from './parts/addTodo/addTodo.component';
     TodoCompnent,
     TopbarComponent,
     AddtodoComponent,
-    List,
+    List
   ],
   imports: [
     MatCheckboxModule,

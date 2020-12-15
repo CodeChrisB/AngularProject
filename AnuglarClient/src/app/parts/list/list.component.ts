@@ -21,21 +21,12 @@ export class List  {
   //init the data
   displayedColumns = ["Person","Description","Priority", "Length","Actions"];
 
- 
+  
    // MatPaginator Inputs
    length = todo.length;
-   pageSize = 10;
-   pageSizeOptions: number[] = [5, 10,25,100];
    @ViewChild(MatPaginator) paginator: MatPaginator;
-   dataSource = todo.slice(0,this.pageSize);
-   pageIndex = 0
+   dataSource = todo;
 
-   goToPage($event){
-    this.length = $event.length;
-    this.pageSize =$event.pageSize;
-    this.dataSource = todo.slice(this.pageSize* $event.pageIndex,this.pageSize* $event.pageIndex+this.pageSize);
-    this.pageIndex = $event.pageIndex;
-   }
 
    firstPage()
    {
@@ -80,45 +71,31 @@ export class List  {
   addTodo(){
     const dialogRef = this.dialog.open(AddtodoComponent, {
       width: '100%',
-      data: {name: 'this.name', animal: 'this.animal'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.reload();
-      this.firstPage();
-
     });
   }
 
   remove(id:number){
-    alert('delete')
     TodoService.remove(id);
-    this.reload();
-    this.firstPage();
   }
 
 
   sortName(){
    TodoService.sortName()
-   this.reload();
-   this.firstPage();
   }
 
   sortDescripton(){
     TodoService.sortDescripton();
-    this.reload();
-    this.firstPage();
   }
 
   sortPriority(){
-    this.reload();
-    this.firstPage();
     this.dataSource= this.dataSource.sort((a,b)=>a.priority < b.priority ? 0: 1 )
   }
 
   sortLength(){
-    this.reload();
-    this.firstPage();
     this.dataSource= this.dataSource.sort((a,b)=>a.length < b.length ? 1: 0 )
   }
 
