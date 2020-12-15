@@ -68,8 +68,13 @@
 
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 
+      
     </mat-table>
-
+    <button id="addButton" (click)="addTodo()">
+      <mat-icon>
+          add
+      </mat-icon>
+    </button>
     <mat-paginator [length]="length"
                   [pageSize]="pageSize"
                   [pageSizeOptions]="pageSizeOptions"

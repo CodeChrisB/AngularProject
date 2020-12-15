@@ -20,3 +20,16 @@ p#prio{
   width: 70px;
   text-align: center;
 }
+
+
+#addButton
+{
+  margin-top: 10px;
+  background-color: #c2185b;
+  border-color: #c2185b;
+  border-radius: 50px;
+  position: relative;
+  float: right;
+  height: 50px;
+  width: 50px;
+}

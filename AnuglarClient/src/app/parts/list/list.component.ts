@@ -68,5 +68,9 @@ export class List  {
   return 'None'
   }
 
+  addTodo(){
+    
+  }
+
 
 }
