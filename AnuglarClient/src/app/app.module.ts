@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {TodoCompnent} from 'src/app/todo-list/todo-component'
 import {TopbarComponent} from 'src/app/parts/topbar/topbar.component'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,7 +41,6 @@ import { AddtodoComponent } from './parts/addTodo/addTodo.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TodoCompnent,
     TopbarComponent,
     AddtodoComponent,
     List

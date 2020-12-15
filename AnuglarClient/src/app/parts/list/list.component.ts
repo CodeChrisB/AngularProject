@@ -4,7 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { TodoService } from 'src/app/app.todo.service';
 import { AddtodoComponent } from '../addTodo/addTodo.component';
 import {todo} from '../../../app/parts/interface/todo'
-
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 const todo: todo[] = TodoService.getAllTodo();
@@ -16,6 +16,22 @@ templateUrl: './list.component.html',
 styleUrls: ['./list.component.css']
 })
 export class List  {
+
+
+  search:string;
+
+  filter(searchString:string){
+    this.dataSource=TodoService.getAllTodo().filter(
+      todo=> todo.person.indexOf(searchString)!=-1||
+      todo.descripton.indexOf(searchString)!=-1||
+      todo.priority ==1 && ('Major'.indexOf(searchString))!=-1||
+      todo.priority ==2 && ('Medium'.indexOf(searchString))!=-1||
+      todo.priority ==3 && ('Minor'.indexOf(searchString))!=-1||
+      todo.priority !=1 && todo.priority !=2 &&todo.priority !=3 && ('None'.indexOf(searchString))!=-1 ||
+      (todo.length.toString()+" Stunden") .indexOf(searchString)!=-1      
+      )
+  }
+  constructor(public dialog: MatDialog) {}
 
 
   //init the data
@@ -66,17 +82,9 @@ export class List  {
   return 'None'
   }
 
-  constructor(public dialog: MatDialog) {}
 
-  addTodo(){
-    const dialogRef = this.dialog.open(AddtodoComponent, {
-      width: '100%',
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.reload();
-    });
-  }
+ 
 
   remove(id:number){
     TodoService.remove(id);

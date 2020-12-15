@@ -51,6 +51,10 @@ addTodo(){
         return
    TodoService.addTodo(this.todo)
    this.dialogRef.close('Close');
+
+   this.dialogRef.afterClosed().subscribe(data=>{
+
+   })
 }
 
 ngOnInit(){}

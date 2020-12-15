@@ -45,8 +45,6 @@
       <div *ngIf="matchesSearch(person)"
           (mouseover)="actCountry = person.country"
           [style.background-color]="getColor(person)">
-
-        <todo-list [person]=person (click)="onDelete(person.id)"></todo-list>
       </div>
     </div>
   </div>

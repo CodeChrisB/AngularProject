@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Person} from './app.person';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {todo} from '../app/parts/interface/todo'
+import { List } from './parts/list/list.component';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -13,6 +15,7 @@ export class TodoService {
   http: HttpClient;
   public persons;
   url: string = 'http://localhost:8080/person';
+  search:string="";
 
   constructor(http: HttpClient) {
     this.http = http;
@@ -73,10 +76,13 @@ export class TodoService {
     return this.todos;
   }
 
+
+
   static addTodo(todo :todo):void{
     todo.id=this.todos.length+2;
     this.todos.push(todo)
   }
+
 
   static remove(id:number){
     this.todos = this.todos.filter(t=> t.id != id)
