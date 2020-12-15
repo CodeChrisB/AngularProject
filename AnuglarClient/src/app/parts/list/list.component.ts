@@ -47,7 +47,8 @@ export class List  {
    reload(){
     this.dataSource=TodoService.getAllTodo();
     this.length = this.dataSource.length;
-
+    this.firstPage();
+    this.refresh();
   }
 
   onRowClicked(row) {
@@ -95,6 +96,32 @@ export class List  {
     this.reload();
     this.firstPage();
   }
+
+
+  sortName(){
+   TodoService.sortName()
+   this.reload();
+   this.firstPage();
+  }
+
+  sortDescripton(){
+    TodoService.sortDescripton();
+    this.reload();
+    this.firstPage();
+  }
+
+  sortPriority(){
+    this.reload();
+    this.firstPage();
+    this.dataSource= this.dataSource.sort((a,b)=>a.priority < b.priority ? 0: 1 )
+  }
+
+  sortLength(){
+    this.reload();
+    this.firstPage();
+    this.dataSource= this.dataSource.sort((a,b)=>a.length < b.length ? 1: 0 )
+  }
+
 
 
 }

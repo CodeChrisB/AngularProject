@@ -11,7 +11,7 @@ button{
 }
 
 #cButton{
-  color: lightgray;
+  color: grey;
   width: fit-content;
 }
 
@@ -32,4 +32,8 @@ p#prio{
   float: right;
   height: 50px;
   width: 50px;
+}
+
+#header{
+  width: 100px;
 }

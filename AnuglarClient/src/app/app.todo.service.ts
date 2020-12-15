@@ -83,4 +83,13 @@ export class TodoService {
   }
 
 
+
+  static sortName(){
+    this.todos= this.todos.sort((a,b)=>a.person.localeCompare(b.person))
+   }
+
+   static sortDescripton(){
+    this.todos= this.todos.sort((a,b)=>a.descripton.localeCompare(b.descripton))
+  }
+
 }
