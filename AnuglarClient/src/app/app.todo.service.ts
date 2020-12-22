@@ -46,8 +46,19 @@ export class TodoService {
    return this.http.post<todo>(this.url + '/create', body, options).pipe(map(data=>data))
 
   }
+  
+  update(todo:todo):Observable<todo>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
 
-  delete(id : number):void{
+    const options = {
+      headers: headers
+    }
+    console.dir(this.url + '/update/')
+    return this.http.post<todo>(this.url + '/update/', options).pipe(map(data => data));
+  }
+  delete(id : number):Observable<todo>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
@@ -56,8 +67,7 @@ export class TodoService {
       headers: headers
     }
     console.dir(this.url + '/delete/' + id)
-    this.http.delete<Person>(this.url + '/delete/' + id, options).subscribe(data => this.persons = data);
-    this.findAll()
+    return this.http.delete<todo>(this.url + '/delete/' + id, options).pipe(map(data => data));
   }
 
   todos: todo[] = [];

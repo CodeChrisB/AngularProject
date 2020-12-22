@@ -1,5 +1,5 @@
     <div id="remove">
-        <h1>Neues Todo hinzufügen</h1>
+        <h1>{{isUpdate ? (todo.person + ' editieren') : 'Neues Todo hinzufügen'}}</h1>
         <hr>
         <input [(ngModel)]="todo.person" type="text" class="form-control" id="name"
         required name="name" placeholder="Person">
@@ -19,5 +19,5 @@
     <div class="big">
         <input [(ngModel)]="todo.description" type="text" class="form-control" id="name"
         required name="name" placeholder="Desc">
-        <button (click)="addTodo()">Hinzufügen</button>
+        <button (click)="addTodo()">{{isUpdate ? 'Updaten' : 'Hinzufügen'}}</button>
     </div>

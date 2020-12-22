@@ -27,6 +27,21 @@ ngOnInit(){
 addTodo(){
   const dialogRef = this.dialog.open(AddtodoComponent, {
     width: '100%',
+    data: null
+  });
+
+  dialogRef.afterClosed().subscribe(data => {
+    this.todoService.findAll().subscribe(data =>this.dataSource=data)
+  })
+}
+
+
+update(t:todo){
+  console.dir('todo')
+  console.dir(t)
+  const dialogRef = this.dialog.open(AddtodoComponent, {
+    width: '100%',
+    data: t
   });
 
   dialogRef.afterClosed().subscribe(data => {
@@ -51,6 +66,8 @@ addTodo(){
     });
 
   }
+
+
   http;
   constructor(public dialog: MatDialog,public todoService: TodoService,http: HttpClient) {
     this.http = http;
@@ -106,7 +123,13 @@ addTodo(){
  
 
   remove(id:number){
+    this.todoService.delete(id).subscribe(data=>{
+    this.todoService.findAll().subscribe(data=>this.dataSource=data);
+    })
   }
+
+  
+
   sname=true;
   sortName(){
     if(this.sname){ 
