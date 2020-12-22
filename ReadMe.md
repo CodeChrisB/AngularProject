@@ -15,6 +15,6 @@ This project was generated with Angular CLI.
 - now Open \AngularClient
   - run the command ng serve
 - open in a browser of your choice http://localhost:4200/
-### That is all you have to do t
+### That is all you have to do
 ---
 ## This was a school project done by @[CodeChrisB](https://github.com/CodeChrisB)
