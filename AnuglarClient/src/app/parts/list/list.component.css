@@ -7,9 +7,9 @@ button{
   width: 10px;
 }
 
-#cButton,#actionButton{
-  background-color: purple;
-  border-color: purple;
+#deöete{
+  background-color: greenyellow;
+  border-color: greenyellow;
   height: 40px;
   width: 100%;
 }
@@ -55,12 +55,10 @@ table {
   table-layout: fixed;
   width: 100%;
   border: solid white 1px;
-
-
 }
 
 table, th, td {
-  border: 1px solid white;
+  border: 1px solid black;
     /* css-3 */
     white-space: -o-pre-wrap; 
     word-wrap: break-word;

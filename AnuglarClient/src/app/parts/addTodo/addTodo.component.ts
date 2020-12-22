@@ -49,12 +49,13 @@ constructor(public dialogRef: MatDialogRef<AddtodoComponent>,public todoService:
 addTodo(){
     if(this.todo.person=="" ||this.todo.description =="")
         return
-   this.todoService.addTodo(this.todo)
-   this.dialogRef.close('Close');
-
-   this.dialogRef.afterClosed().subscribe(data=>{
-
+    this.todoService.addTodo(this.todo).subscribe(data=>{
+    this.dialogRef.close('Close');
    })
+
+
+  
+   
 }
 
 ngOnInit(){}

@@ -26,11 +26,11 @@ export class TodoService {
     return this.http.get<todo[]>(this.url + '/findAll').pipe(map(data=>data));
   }
 
-  addPerson(person:Person): void {
+  addTodo(todo:todo): Observable<todo> {
     console.log('i am in addPerson')
-    this.persons.push(person);
-    console.log(this.persons)
-    const body = JSON.stringify(person);
+    this.todos.push(todo);
+    console.log(this.todos)
+    const body = JSON.stringify(todo);
     console.log(body)
     const headers = new HttpHeaders({
       'Content-Type' : 'application/json',
@@ -42,7 +42,7 @@ export class TodoService {
       headers: headers
     }
     console.log(options)
-    this.http.post<Person>(this.url + '/create', body, options).subscribe(data => this.findAll());
+   return this.http.post<todo>(this.url + '/create', body, options).pipe(map(data=>data))
 
   }
 
@@ -63,10 +63,7 @@ export class TodoService {
 
 
 
-  addTodo(todo :todo):void{
-    todo.id=this.todos.length+2;
-    this.todos.push(todo)
-  }
+
 
 
   remove(id:number): Observable<todo>{

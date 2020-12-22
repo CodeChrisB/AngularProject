@@ -23,22 +23,15 @@ export class AppComponent implements OnInit {
   public nc(){
     this.ncshow=!this.ncshow
   }
-  private findCurrentId() : number{
-    var poped = this.personSevice.persons.pop();
-    this.personSevice.persons.push(poped);
-    if(poped == null)
-    {
-      return 1;
-    }
-    return poped.id + 1;
-  }
-  public personSevice: TodoService;
+  
+  
+  public todoService: TodoService;
 
   constructor(ps: TodoService) {
-    this.personSevice = ps;
+    this.todoService = ps;
   }
 
   ngOnInit(): void {
-    this.personSevice.findAll();
+    this.todoService.findAll();
   }
 }
