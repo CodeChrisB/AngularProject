@@ -20,7 +20,7 @@ ngOnInit(){
     this.dataSource =data;
     console.dir(this.dataSource);
   });
-
+  console.dir(this.todo);
 
   
 }
@@ -48,16 +48,25 @@ ngOnInit(){
   //init the data
   displayedColumns = ["Person","Description","Priority", "Length","Actions"];
 
+  
+   // MatPaginator Inputs
+   length = this.todoService.getAllTodo().length;;
+   @ViewChild(MatPaginator) paginator: MatPaginator;
+   dataSource = this.todoService.getAllTodo();
 
-  dataSource;
+
+   firstPage()
+   {
+    this.paginator.firstPage();
+   }
    refresh(){
      this.dataSource=this.dataSource;
    }
    reload(){
-     this.todoService.findAll().subscribe(data=>{
-    this.dataSource =data;
-    console.dir(this.dataSource);
-  });
+    this.dataSource=this.todoService.getAllTodo();
+    this.length = this.dataSource.length;
+    this.firstPage();
+    this.refresh();
   }
 
   onRowClicked(row) {
@@ -86,23 +95,7 @@ ngOnInit(){
  
 
   remove(id:number){
-    this.todoService.remove(id).subscribe(data=> {
-     this.todoService.findAll().subscribe(all=>{
-       this.dataSource=all;
-     })
-    })
   }
-
-  sdesc=true
-  sortDescripton(){
-    if(this.sdesc){ 
-      this.dataSource.sort((a,b)=>a.description.localeCompare(b.description))
-      this.sdesc=!this.sdesc;
-    }else{
-      this.dataSource.sort((b,a)=>a.description.localeCompare(b.description))
-      this.sdesc=!this.sdesc;
-    }
-  } 
   sname=true;
   sortName(){
     if(this.sname){ 
@@ -111,6 +104,17 @@ ngOnInit(){
     }else{
       this.dataSource.sort((b,a)=>a.person.localeCompare(b.person))
       this.sname=!this.sname;
+    }
+   
+  }
+  sdesc=true
+  sortDescripton(){
+    if(this.sdesc){ 
+      this.dataSource.sort((a,b)=>a.description.localeCompare(b.description))
+      this.sdesc=!this.sdesc;
+    }else{
+      this.dataSource.sort((b,a)=>a.description.localeCompare(b.description))
+      this.sdesc=!this.sdesc;
     }
   }
 
@@ -138,6 +142,7 @@ ngOnInit(){
 
   
 
+  todo: todo[] = []
 
   
 

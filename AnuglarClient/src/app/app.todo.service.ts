@@ -61,13 +61,22 @@ export class TodoService {
 
   todos: todo[] = [];
 
+  getAllTodo() : todo[]
+  {
+    console.dir(this.url + '/findAll')
+    this.http.get<todo[]>(this.url + '/findAll').subscribe(data => {
+      this.todos= data;
+    });
+    return this.todos;
+  }
 
 
 
 
 
-  remove(id:number): Observable<todo>{
-    return this.http.delete<todo>(this.url + '/delete/' + id).pipe(map(data=>data));
+
+  remove(id:number){
+    this.todos = this.todos.filter(t=> t.id != id)
   }
 
 

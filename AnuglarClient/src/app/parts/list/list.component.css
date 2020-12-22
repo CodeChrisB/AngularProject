@@ -7,11 +7,15 @@ button{
   width: 10px;
 }
 
-#deöete{
+#cButton,#actionButton{
   background-color: greenyellow;
   border-color: greenyellow;
   height: 40px;
   width: 100%;
+}
+#actionButton{
+  background-color: #7b1fa2;
+  border-color: #7b1fa2;
 }
 
 #actionText{
@@ -58,7 +62,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid white;
     /* css-3 */
     white-space: -o-pre-wrap; 
     word-wrap: break-word;
