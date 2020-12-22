@@ -43,13 +43,13 @@ priority:number =4;
 urgency:string;
 length:number;
 
-todo : todo = {id:0,person:"",descripton:"",priority:1,urgency:"null",length:1}
-constructor(public dialogRef: MatDialogRef<AddtodoComponent>) { }
+todo : todo = {id:0,person:"",description:"",priority:1,length:1}
+constructor(public dialogRef: MatDialogRef<AddtodoComponent>,public todoService: TodoService) { }
 
 addTodo(){
-    if(this.todo.person=="" ||this.todo.descripton =="")
+    if(this.todo.person=="" ||this.todo.description =="")
         return
-   TodoService.addTodo(this.todo)
+   this.todoService.addTodo(this.todo)
    this.dialogRef.close('Close');
 
    this.dialogRef.afterClosed().subscribe(data=>{
@@ -58,7 +58,4 @@ addTodo(){
 }
 
 ngOnInit(){}
-
-
-
 }

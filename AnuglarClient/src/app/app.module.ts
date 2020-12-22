@@ -37,7 +37,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatButtonModule } from  '@angular/material/button';
 import { List } from 'src/app/parts/list/list.component'
 import { AddtodoComponent } from './parts/addTodo/addTodo.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +79,9 @@ import { AddtodoComponent } from './parts/addTodo/addTodo.component';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+  ],
+  exports:[
+    HttpClientModule
   ],
 
   providers: [],

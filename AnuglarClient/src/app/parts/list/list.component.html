@@ -3,7 +3,7 @@
   <table>
   <tr>
     <th><button id="cButton" (click)="sortName()">Person</button></th>
-    <th><button id="cButton" (click)="sortDescripton()">Descripton</button></th>
+    <th><button id="cButton" class="description" (click)="sortDescripton()">Descripton</button></th>
     <th><button id="cButton" (click)="sortPriority()">Priority</button></th>
     <th><button id="cButton" (click)="sortLength()">Length</button></th>
     <th id="actionText">Actions</th>
@@ -11,7 +11,7 @@
   <tr>
   <tr *ngFor="let t of dataSource ">
     <td style="background-color: black;">{{t.person}}</td>
-    <td style="background-color: black;">{{t.descripton}}</td>
+    <td id="center" style="background-color: black;">{{t.description}}</td>
     <td id="center" style="background-color: black;"><p id="prio" [style.backgroundColor]="getColor(t.priority)">
       {{getPrior(t.priority)}}
     </p></td>

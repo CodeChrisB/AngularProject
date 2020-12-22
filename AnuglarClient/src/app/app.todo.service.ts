@@ -3,8 +3,8 @@ import {Person} from './app.person';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {todo} from '../app/parts/interface/todo'
 import { List } from './parts/list/list.component';
-import { BehaviorSubject } from 'rxjs';
-
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,16 @@ export class TodoService {
 
   http: HttpClient;
   public persons;
-  url: string = 'http://localhost:8080/person';
+  url: string = 'http://localhost:3000/todo';
   search:string="";
-
+ 
   constructor(http: HttpClient) {
     this.http = http;
   }
 
   // GET-Request: Liefert Response als Observable
-  findAll(): void {
-    this.http.get<Person[]>(this.url + '/findAll').subscribe(data => this.persons = data);
+  findAll(): Observable<todo[]> {
+    return this.http.get<todo[]>(this.url + '/findAll').pipe(map(data=>data));
   }
 
   addPerson(person:Person): void {
@@ -59,43 +59,37 @@ export class TodoService {
     this.findAll()
   }
 
-  static todos: todo[] = [
-    {id:1,"person":"Chris","descripton":"Create a todolist","priority":2,"urgency":"urgency","length":15},
-    {id:2,"person":"Aigner","descripton":"Pls do something in Syp","priority":1,"urgency":"urgency","length":1},
-    {id:3,"person":"Auernig","descripton":"Tinf Stuff","priority":3,"urgency":"urgency","length":5},
-    {id:4,"person":"Bauer","descripton":"Weird Loal stuff","priority":4,"urgency":"urgency","length":7},
-    {id:5,"person":"Haslinger","descripton":"JPA Stuff","priority":1,"urgency":"urgency","length":16},
-    {id:6,"person":"Robert","descripton":"Database","priority":1,"urgency":"urgency","length":13},
-    {id:7,"person":"Marc","descripton":"Note Scanning","priority":2,"urgency":"urgency","length":6},
-    {id:8,"person":"Jonas","descripton":"Get a katana","priority":4,"urgency":"urgency","length":12},
-    {id:9,"person":"Emil","descripton":"Mc Anti Hack Plugin","priority":1,"urgency":"urgency","length":14}
-  ]
+  todos: todo[] = [];
 
- static getAllTodo() : todo[]
+  getAllTodo() : todo[]
   {
+    console.dir(this.url + '/findAll')
+    this.http.get<todo[]>(this.url + '/findAll').subscribe(data => {
+      this.todos= data;
+    });
     return this.todos;
   }
 
 
 
-  static addTodo(todo :todo):void{
+  addTodo(todo :todo):void{
     todo.id=this.todos.length+2;
     this.todos.push(todo)
   }
 
 
-  static remove(id:number){
+  remove(id:number){
     this.todos = this.todos.filter(t=> t.id != id)
   }
 
 
 
-  static sortName(){
+  sortName(){
     return this.todos.sort((a,b)=>a.person.localeCompare(b.person))
    }
 
-   static sortDescripton(){
-    this.todos= this.todos.sort((a,b)=>a.descripton.localeCompare(b.descripton))
+   sortDescripton(){
+    this.todos= this.todos.sort((a,b)=>a.description.localeCompare(b.description))
   }
 
 }
