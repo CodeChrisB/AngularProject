@@ -42,6 +42,7 @@ export class TodoService {
       headers: headers
     }
     console.log(options)
+    console.dir(this.url + '/create', body +options)
    return this.http.post<todo>(this.url + '/create', body, options).pipe(map(data=>data))
 
   }

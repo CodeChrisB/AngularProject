@@ -110,3 +110,10 @@ input[type=submit]:hover {
 #description{
   min-width: 500px;
 }
+
+#addButton{
+  position: absolute;
+  right: 0;
+  top: 7.2vh;
+  width: 10vw;
+}

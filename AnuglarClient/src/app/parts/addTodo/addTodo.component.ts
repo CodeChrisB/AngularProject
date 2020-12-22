@@ -47,8 +47,10 @@ todo : todo = {id:0,person:"",description:"",priority:1,length:1}
 constructor(public dialogRef: MatDialogRef<AddtodoComponent>,public todoService: TodoService) { }
 
 addTodo(){
+  this.todoService.findAll().subscribe(data=>console.dir(data.length))
     if(this.todo.person=="" ||this.todo.description =="")
         return
+
     this.todoService.addTodo(this.todo).subscribe(data=>{
     this.dialogRef.close('Close');
    })

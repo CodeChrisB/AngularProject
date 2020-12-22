@@ -10,19 +10,10 @@ import { TodoService } from 'src/app/app.todo.service';
   styleUrls: ['./topbar.component.css']
 })
 export class TopbarComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,public todoService: TodoService) {}
 
 
-  
-  addTodo(){
 
-   
-
-    const dialogRef = this.dialog.open(AddtodoComponent, {
-      width: '100%',
-    });
-
-  }
 
   ngOnInit(): void {
   }

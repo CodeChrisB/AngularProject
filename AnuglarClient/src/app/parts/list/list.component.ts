@@ -21,9 +21,20 @@ ngOnInit(){
     console.dir(this.dataSource);
   });
   console.dir(this.todo);
+}
 
   
+addTodo(){
+  const dialogRef = this.dialog.open(AddtodoComponent, {
+    width: '100%',
+  });
+
+  dialogRef.afterClosed().subscribe(data => {
+    this.todoService.findAll().subscribe(data =>this.dataSource=data)
+  })
 }
+
+
   search:string;
 
   filter(searchString:string){
